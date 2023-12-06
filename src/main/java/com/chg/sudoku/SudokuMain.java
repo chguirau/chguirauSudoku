@@ -4,9 +4,7 @@
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-package chg.ocio.sudoku;
-
-import chg.ocio.sudoku.gui.*;
+package com.chg.sudoku;
 
 /**
  * @author herca07
@@ -17,7 +15,7 @@ import chg.ocio.sudoku.gui.*;
 public class SudokuMain {
 
 	public static void main(String[] args) {
-		System.out.println("Sudoku CHG v2.1 Sep23");
+		System.out.println("Sudoku CHG v1.0 Dec23");
 		if (args.length>0)
 		{
 			System.out.println(args[0]);

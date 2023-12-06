@@ -4,9 +4,9 @@
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-package chg.ocio.sudoku;
+package com.chg.sudoku;
 
-import chg.ocio.booleanEquation.*;
+import com.chg.booleanEquation.*;
 
 /**
  * @author herca07

@@ -1,13 +1,12 @@
 /Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/SudokuBaseEquations.java
 /Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/booleanEquation/BooleanExtendedEquation.java
-/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/SudokuMain.java
-/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/chguirausudoku/ChguirauSudoku.java
-/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/SudokuElement.java
-/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/gui/BasicSwingComponents.java
-/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/booleanEquation/BooleanExtendedEquationXOR.java
 /Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/booleanEquation/EquationElement.java
 /Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/booleanEquation/EquationException.java
 /Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/booleanEquation/BooleanExtended.java
 /Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/gui/MoreSwingComponents.java
 /Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/SudokuException.java
+/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/SudokuMain.java
+/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/SudokuElement.java
 /Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/gui/SudokuGUI.java
+/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/sudoku/gui/BasicSwingComponents.java
+/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/com/chg/booleanEquation/BooleanExtendedEquationXOR.java

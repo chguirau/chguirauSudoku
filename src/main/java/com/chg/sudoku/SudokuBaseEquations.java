@@ -4,20 +4,16 @@
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-package chg.ocio.sudoku;
+package com.chg.sudoku;
 
-import chg.ocio.booleanEquation.BooleanExtended;
-import chg.ocio.booleanEquation.BooleanExtendedEquation;
-import chg.ocio.booleanEquation.BooleanExtendedEquationXOR;
+import com.chg.booleanEquation.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import javax.swing.border.StrokeBorder;
 
 import java.io.File;
 import java.io.IOException;
-import chg.ocio.booleanEquation.EquationException;
 
 /**
  * @author herca07
