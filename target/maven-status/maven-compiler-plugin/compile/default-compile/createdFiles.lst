@@ -1,0 +1,13 @@
+chg/ocio/sudoku/gui/SudokuGUI.class
+chg/ocio/booleanEquation/BooleanExtended.class
+chg/ocio/sudoku/gui/BasicSwingComponents.class
+com/chg/chguirausudoku/ChguirauSudoku.class
+chg/ocio/booleanEquation/EquationException.class
+chg/ocio/booleanEquation/BooleanExtendedEquationXOR.class
+chg/ocio/booleanEquation/EquationElement.class
+chg/ocio/sudoku/gui/MoreSwingComponents.class
+chg/ocio/sudoku/SudokuException.class
+chg/ocio/sudoku/SudokuBaseEquations.class
+chg/ocio/sudoku/SudokuMain.class
+chg/ocio/booleanEquation/BooleanExtendedEquation.class
+chg/ocio/sudoku/SudokuElement.class
