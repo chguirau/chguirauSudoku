@@ -14,14 +14,15 @@ import java.util.Scanner;
 
 import java.io.File;
 import java.io.IOException;
-
+import javax.swing.JFileChooser;
+import java.awt.Component;
 /**
  * @author herca07
  *
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class SudokuBaseEquations {
+public class SudokuBaseEquations extends Component {
 	public BooleanExtended[][][] game=new BooleanExtended[9][9][9];
 	
 	public int totalUnknown=729; // 9 * 9 * 9
@@ -341,87 +342,128 @@ public class SudokuBaseEquations {
 		}
 
 	}
-	
-	 public void initGameFromFile(String fileName)
-	{
-		//format is for the same board than in initGame
-		//.69..5... EOL
-		//.1...7859 EOL
-		// etc, the 9 lines
-                if (SudokuMain.debug)
-                {
-                        System.out.println(fileName); 
-                }
-                String strfilename="/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/"+fileName;
-		try 
-		{ 
-			Scanner sc = new Scanner(new File(strfilename)); 
-			int row=0;
-			int colSize=0;
-			int digit;
-			while (sc.hasNext() && row<9) 
-			{ 
-				String str = sc.nextLine(); 
-				if (SudokuMain.debug)
-				{
-					System.out.println(str); 
-				}
-				colSize=str.length();
-				for (int col=0; col<colSize && col<9; col++)
-				{
-					if (str.charAt(col) != '.') 
-					{	
-						switch (str.charAt(col))
-						{
-						case '1' : digit=0; break;
-						case '2' : digit=1; break;
-						case '3' : digit=2; break;
-						case '4' : digit=3; break;
-						case '5' : digit=4; break;
-						case '6' : digit=5; break;
-						case '7' : digit=6; break;
-						case '8' : digit=7; break;
-						case '9' : digit=8; break;
-						default :
-							throw new IOException("Wrong format");
-						}
-						if (SudokuMain.debug)
-						{
-							System.out.println(digit); 
-						}
-	
-						game[col][row][digit].setValue(BooleanExtended.TRUE);
-					}
-					//else nothing, it stays BooleanExtended.UNKNOWN
-				}
-				row++;
-			} 
-			sc.close(); 
-		} 
-		catch (IOException e) { 
-			if (SudokuMain.debug)
-			{
-				System.out.println(e.getMessage()); 
-			}
 
-		}	
+	public boolean initGameFromSudoku()
+	{
+            try
+            { 
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+                int result = fileChooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    if (SudokuMain.debug)
+                    {	
+                        System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+                    }
+                    initGameFromFile(selectedFile);
+                    return true;
+                }
+                else return false;
+            }
+            catch (IOException e)
+            {
+                    if (SudokuMain.debug)
+                    {
+                            System.out.println(e.getMessage()); 
+                    }
+                    return false;                
+            }
+        }
+        
+        
+	public boolean initGameFromFile(String fileName)
+	{
+            if (SudokuMain.debug)
+            {
+                    System.out.println(fileName); 
+            }
+            String strfilename="/Users/carlosherrero/NetBeansProjects/chguirauSudoku/src/main/java/"+fileName;
+            try 
+            { 
+                    File afile=new File(strfilename);
+                    initGameFromFile(afile);
+                    return true;
+            }
+            catch (IOException e) { 
+                    if (SudokuMain.debug)
+                    {
+                            System.out.println(e.getMessage()); 
+                    }
+                    return false;
+            }
+        }
+
+        public void initGameFromFile(File afile) throws IOException
+	{
+            //file is in .sdk format as per https://www.sudocue.net/fileformats.php
+            //a file is a single sudoku description
+            //for now, we do not allow optional fields preceeded by #
+            //format is for the same board than in initGame
+            //.69..5... EOL
+            //.1...7859 EOL
+            // etc, the 9 lines
+            //reads text file and inits sudoku
+            Scanner sc = new Scanner(afile); 
+            int row=0;
+            int colSize=0;
+            int digit;
+            
+            while (sc.hasNext() && row<9) 
+            { 
+                    String str = sc.nextLine(); 
+                    if (SudokuMain.debug)
+                    {
+                            System.out.println(str); 
+                    }
+                    colSize=str.length();
+                    for (int col=0; col<colSize && col<9; col++)
+                    {
+                            if (str.charAt(col) != '.') 
+                            {	
+                                    switch (str.charAt(col))
+                                    {
+                                    case '1' : digit=0; break;
+                                    case '2' : digit=1; break;
+                                    case '3' : digit=2; break;
+                                    case '4' : digit=3; break;
+                                    case '5' : digit=4; break;
+                                    case '6' : digit=5; break;
+                                    case '7' : digit=6; break;
+                                    case '8' : digit=7; break;
+                                    case '9' : digit=8; break;
+                                    default :
+                                            throw new IOException("Wrong format");
+                                    }
+                                    if (SudokuMain.debug)
+                                    {
+                                            System.out.println(digit); 
+                                    }
+
+                                    game[col][row][digit].setValue(BooleanExtended.TRUE);
+                            }
+                            //else nothing, it stays BooleanExtended.UNKNOWN
+                    }
+                    row++;
+            } 
+            sc.close(); 
 		
-		for (int i=1;i<=9;i++)
-		{
-			for (int j=1;j<=9;j++)
-			{
-				for (int digit=1; digit<=9; digit++)
-				{
-					if (game[i-1][j-1][digit-1].getValue()!=BooleanExtended.UNKNOWN)
-						totalUnknown--;
-				}
-			}
-		}
-		
-		if (SudokuMain.debug)
-		{	
-			System.out.println("Total unknown after init game: "+totalUnknown);
-		}
+            for (int i=1;i<=9;i++)
+            {
+                    for (int j=1;j<=9;j++)
+                    {
+                            for (int adigit=1; adigit<=9; adigit++)
+                            {
+                                    if (game[i-1][j-1][adigit-1].getValue()!=BooleanExtended.UNKNOWN)
+                                            totalUnknown--;
+                            }
+                    }
+            }
+
+            if (SudokuMain.debug)
+            {	
+                    System.out.println("Total unknown after init game: "+totalUnknown);
+            }
 
 	}
 	
@@ -538,44 +580,57 @@ public class SudokuBaseEquations {
 					System.out.println("Iteration " + iterationLevel);
 				}
 				
-				System.out.println("Evaluated");
-				sudokuHypothesis.showGame();
+				if (SudokuMain.debug)
+				{
+        				System.out.println("Evaluated");
+                                }
 				if (ok) 
 				{
+        				sudokuHypothesis.showGame();
 					System.out.println("Solved!"); 
-					System.out.println("Iteration " + iterationLevel);					
+                                        if (SudokuMain.debug)
+                                        {
+                                            System.out.println("Iteration " + iterationLevel);					
+                                        }
 				} 
 				else 
 				{
-					System.out.println("Not solved!");
-					System.out.println("Iteration " + iterationLevel);					
+					if (SudokuMain.debug)
+        				{
+                                            System.out.println("Not solved!");
+                                            System.out.println("Iteration " + iterationLevel);
+                                        }
 					ok=sudokuHypothesis.solveN(iterationLevel+1);
 				}
 			}
 			catch(EquationException e)
 			{
-				System.out.println("Iteration " + iterationLevel);
-				System.out.println(e.getMessage());
 				if (SudokuMain.debug)
 				{
+                                        System.out.println("Iteration " + iterationLevel);
+                                        System.out.println(e.getMessage());
 					e.printStackTrace();
 				}
 				// we do nothing
 			}
 			catch(SudokuException s)
 			{
-				System.out.println("Iteration " + iterationLevel);
-				System.out.println(s.getMessage());
 				if (SudokuMain.debug)
 				{
+                                        System.out.println("Iteration " + iterationLevel);
+                                        System.out.println(s.getMessage());
 					s.printStackTrace();
 				}
 				// we do nothing
 			}
 			globalSolved=ok || globalSolved;
 		}
-		System.out.println("Global Solved " + globalSolved);
-		return globalSolved;
+
+                if (SudokuMain.debug)
+                {
+                    System.out.println("Global Solved " + globalSolved);
+                }
+                return globalSolved;
 	}
 	
 	SudokuBaseEquations copyWithHypothesis(BooleanExtendedEquationXOR selectedEq, SudokuElement selectedElem)
